@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banking App</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #8e9092;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone {
+      width: 360px;
+      min-height: 720px;
+      background: #f7f7f7;
+      border-radius: 38px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      border: 8px solid #17191c;
+      position: relative;
+    }
+
+    .notch {
+      height: 27px;
+      background: #17191c;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      position: relative;
+    }
+
+    .notch::after {
+      content: "";
+      position: absolute;
+      width: 95px;
+      height: 18px;
+      background: #08090a;
+      border-radius: 20px;
+      top: -1px;
+    }
+
+    .demo-label {
+      position: absolute;
+      top: 31px;
+      right: 8px;
+      z-index: 10;
+      background: #ffcc00;
+      color: #111;
+      font-weight: bold;
+      font-size: 9px;
+      padding: 4px 7px;
+      border-radius: 4px;
+    }
+
+    .header {
+      height: 57px;
+      background: #e32632;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 13px;
+      gap: 15px;
+    }
+
+    .menu {
+      font-size: 24px;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 17px;
+      flex: 1;
+    }
+
+    .icons {
+      display: flex;
+      gap: 15px;
+      font-size: 18px;
+    }
+
+    .account {
+      background: linear-gradient(110deg, #c84935, #e7773b);
+      color: white;
+      padding: 15px 16px;
+      height: 105px;
+    }
+
+    .account-top {
+      font-size: 11px;
+      opacity: .9;
+      margin-bottom: 8px;
+    }
+
+    .account-number {
+      font-size: 13px;
+      margin-bottom: 11px;
+    }
+
+    .balance-btn {
+      float: right;
+      margin-top: -35px;
+      background: white;
+      color: #b42029;
+      border: none;
+      padding: 9px 12px;
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .balance {
+      display: none;
+      clear: both;
+      padding-top: 3px;
+      font-size: 19px;
+      font-weight: bold;
+    }
+
+    .balance.show {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 10px;
+      color: #555;
+      padding: 12px 14px 7px;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: white;
+      padding: 7px 5px 12px;
+    }
+
+    .action {
+      text-align: center;
+      font-size: 10px;
+      color: #222;
+      padding: 7px 2px;
+    }
+
+    .action-icon {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #bfc4c8;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .banner {
+      margin: 0 8px;
+      height: 64px;
+      background: linear-gradient(90deg, #f7d7c7, #dfebf1);
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      overflow: hidden;
+    }
+
+    .banner strong {
+      color: #d72832;
+      font-size: 13px;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .banner span {
+      font-size: 8px;
+      color: #333;
+    }
+
+    .bank-section {
+      background: white;
+      margin-top: 8px;
+    }
+
+    .bank-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 14px 3px;
+      font-size: 10px;
+      color: #555;
+    }
+
+    .bank-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 7px 4px 13px;
+    }
+
+    .bank-item {
+      text-align: center;
+      font-size: 9px;
+      color: #333;
+    }
+
+    .bank-icon {
+      font-size: 21px;
+      height: 29px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .transfer-section {
+      margin-top: 8px;
+      background: white;
+      padding-bottom: 65px;
+    }
+
+    .bottom-nav {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: #07324f;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      color: white;
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 8px;
+      padding-top: 8px;
+      opacity: .9;
+    }
+
+    .nav-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    @media (max-width: 450px) {
+      body {
+        background: #f7f7f7;
+      }
+
+      .phone {
+        width: 100%;
+        min-height: 100vh;
+        border: none;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="phone">
+
+    <div class="notch"></div>
+
+    <div class="demo-label"></div>
+
+    <header class="header">
+      <div class="menu">☰</div>
+      <div class="logo">KOTAK BANK</div>
+
+      <div class="icons">
+        <span>◯</span>
+        <span>♧</span>
+        <span>⌕</span>
+      </div>
+    </header>
+
+    <section class="account">
+      <div class="account-top">Savings Account</div>
+
+      <div class="account-number">
+        XXXX0720
+      </div>
+
+      <button class="balance-btn" onclick="showBalance()">
+        View Balance
+      </button>
+
+      <div id="balance" class="balance">
+        ₹3,53,400
+      </div>
+    </section>
+
+    <div class="section-title">
+      Frequently Used
+    </div>
+
+    <section class="quick-actions">
+
+      <div class="action">
+        <div class="action-icon">◎</div>
+        Account<br>Overview
+      </div>
+
+      <div class="action">
+        <div class="action-icon">⌁</div>
+        Account<br>Activity
+      </div>
+
+      <div class="action">
+        <div class="action-icon">⇄</div>
+        Transfer<br>Money
+      </div>
+
+      <div class="action">
+        <div class="action-icon">▦</div>
+        Scan &amp;<br>Pay
+      </div>
+
+    </section>
+
+    <div class="banner">
+      <div>
+        <strong>Stay safe &amp; switch to<br>contactless payment!</strong>
+        <span>Promotional Banner</span>
+      </div>
+    </div>
+
+    <section class="bank-section">
+
+      <div class="bank-header">
+        <span>Bank</span>
+        <span>›</span>
+      </div>
+
+      <div class="bank-grid">
+
+        <div class="bank-item">
+          <div class="bank-icon">₹</div>
+          Bank
+        </div>
+
+        <div class="bank-item">
+          <div class="bank-icon">◎</div>
+          Account<br>Overview
+        </div>
+
+        <div class="bank-item">
+          <div class="bank-icon">▣</div>
+          Account<br>Activity
+        </div>
+
+        <div class="bank-item">
+          <div class="bank-icon">▤</div>
+          Account<br>Statement
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="transfer-section">
+
+      <div class="bank-header">
+        <span>Pay &amp; Transfer</span>
+        <span>›</span>
+      </div>
+
+      <div class="bank-grid">
+
+        <div class="bank-item">
+          <div class="bank-icon">⇄</div>
+          Transfer
+        </div>
+
+        <div class="bank-item">
+          <div class="bank-icon">▣</div>
+          Bill Pay
+        </div>
+
+        <div class="bank-item">
+          <div class="bank-icon">BH</div>
+          BHIM
+        </div>
+
+        <div class="bank-item">
+          <div class="bank-icon">▦</div>
+          Scan &amp; Pay
+        </div>
+
+      </div>
+
+    </section>
+
+    <nav class="bottom-nav">
+
+      <div class="nav-item">
+        <div class="nav-icon">☆</div>
+        My Bank
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">▣</div>
+        Apply Now
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">▤</div>
+        Credit Card
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">▥</div>
+        Service Request
+      </div>
+
+      <div class="nav-item">
+        <div class="nav-icon">▥</div>
+        Investments
+      </div>
+
+    </nav>
+
+  </div>
+
+  <script>
+    function showBalance() {
+      const balance = document.getElementById("balance");
+      const button = document.querySelector(".balance-btn");
+
+      balance.classList.toggle("show");
+
+      if (balance.classList.contains("show")) {
+        button.textContent = "Hide Balance";
+      } else {
+        button.textContent = "View Balance";
+      }
+    }
+  </script>
+
+</body>
+</html>
