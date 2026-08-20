@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Banking App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banking App Demo</title>
 
   <style>
     * {
@@ -21,17 +21,19 @@
       align-items: center;
     }
 
+    /* PHONE */
     .phone {
       width: 360px;
       min-height: 720px;
       background: #f7f7f7;
       border-radius: 38px;
       overflow: hidden;
-      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
       border: 8px solid #17191c;
       position: relative;
     }
 
+    /* TOP NOTCH */
     .notch {
       height: 27px;
       background: #17191c;
@@ -53,6 +55,7 @@
       top: -1px;
     }
 
+    /* DEMO LABEL */
     .demo-label {
       position: absolute;
       top: 31px;
@@ -66,6 +69,7 @@
       border-radius: 4px;
     }
 
+    /* HEADER */
     .header {
       height: 57px;
       background: #e32632;
@@ -92,6 +96,7 @@
       font-size: 18px;
     }
 
+    /* ACCOUNT */
     .account {
       background: linear-gradient(110deg, #c84935, #e7773b);
       color: white;
@@ -101,7 +106,7 @@
 
     .account-top {
       font-size: 11px;
-      opacity: .9;
+      opacity: 0.9;
       margin-bottom: 8px;
     }
 
@@ -110,6 +115,7 @@
       margin-bottom: 11px;
     }
 
+    /* VIEW BALANCE BUTTON */
     .balance-btn {
       float: right;
       margin-top: -35px;
@@ -123,6 +129,11 @@
       cursor: pointer;
     }
 
+    .balance-btn:hover {
+      background: #f3f3f3;
+    }
+
+    /* BALANCE */
     .balance {
       display: none;
       clear: both;
@@ -135,12 +146,14 @@
       display: block;
     }
 
+    /* SECTION TITLE */
     .section-title {
       font-size: 10px;
       color: #555;
       padding: 12px 14px 7px;
     }
 
+    /* QUICK ACTIONS */
     .quick-actions {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -167,6 +180,7 @@
       font-size: 15px;
     }
 
+    /* BANNER */
     .banner {
       margin: 0 8px;
       height: 64px;
@@ -189,6 +203,7 @@
       color: #333;
     }
 
+    /* BANK SECTION */
     .bank-section {
       background: white;
       margin-top: 8px;
@@ -222,12 +237,14 @@
       align-items: center;
     }
 
+    /* TRANSFER SECTION */
     .transfer-section {
       margin-top: 8px;
       background: white;
       padding-bottom: 65px;
     }
 
+    /* BOTTOM NAVIGATION */
     .bottom-nav {
       position: absolute;
       bottom: 0;
@@ -244,7 +261,7 @@
       text-align: center;
       font-size: 8px;
       padding-top: 8px;
-      opacity: .9;
+      opacity: 0.9;
     }
 
     .nav-icon {
@@ -252,6 +269,101 @@
       margin-bottom: 4px;
     }
 
+    /* =========================
+       PIN MODAL
+       ========================= */
+
+    .pin-modal {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .pin-box {
+      width: 100%;
+      background: white;
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .lock-icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .pin-box h3 {
+      font-size: 20px;
+      margin-bottom: 7px;
+    }
+
+    .pin-box p {
+      color: #777;
+      font-size: 11px;
+      margin-bottom: 20px;
+    }
+
+    /* PIN INPUT */
+    #pinInput {
+      width: 100%;
+      height: 48px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      text-align: center;
+      font-size: 22px;
+      letter-spacing: 7px;
+      outline: none;
+    }
+
+    #pinInput:focus {
+      border-color: #d72832;
+    }
+
+    /* ERROR MESSAGE */
+    .pin-error {
+      height: 20px;
+      margin-top: 7px;
+      color: #d72832;
+      font-size: 11px;
+    }
+
+    /* CONTINUE BUTTON */
+    .verify-btn {
+      width: 100%;
+      height: 44px;
+      border: none;
+      border-radius: 6px;
+      background: #e32632;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .verify-btn:hover {
+      background: #c91e29;
+    }
+
+    /* CLOSE BUTTON */
+    .close-btn {
+      position: absolute;
+      right: 13px;
+      top: 10px;
+      border: none;
+      background: none;
+      font-size: 25px;
+      color: #777;
+      cursor: pointer;
+    }
+
+    /* MOBILE */
     @media (max-width: 450px) {
       body {
         background: #f7f7f7;
@@ -269,184 +381,556 @@
 
 <body>
 
+  <!-- PHONE -->
   <div class="phone">
 
+    <!-- NOTCH -->
     <div class="notch"></div>
 
-    <div class="demo-label"></div>
+    <!-- DEMO INDICATOR -->
+    <div class="demo-label">DEMO</div>
 
+    <!-- HEADER -->
     <header class="header">
-      <div class="menu">☰</div>
-      <div class="logo">KOTAK BANK</div>
+
+      <div class="menu">
+        ☰
+      </div>
+
+      <div class="logo">
+        MY BANK
+      </div>
 
       <div class="icons">
         <span>◯</span>
         <span>♧</span>
         <span>⌕</span>
       </div>
+
     </header>
 
+
+    <!-- ACCOUNT -->
     <section class="account">
-      <div class="account-top">Savings Account</div>
+
+      <div class="account-top">
+        Savings Account
+      </div>
 
       <div class="account-number">
         XXXX0720
       </div>
 
-      <button class="balance-btn" onclick="showBalance()">
+      <!-- VIEW BALANCE -->
+      <button
+        class="balance-btn"
+        onclick="openPin()">
         View Balance
       </button>
 
+      <!-- BALANCE -->
       <div id="balance" class="balance">
         ₹3,53,400
       </div>
+
     </section>
 
+
+    <!-- FREQUENTLY USED -->
     <div class="section-title">
       Frequently Used
     </div>
 
+
     <section class="quick-actions">
 
       <div class="action">
-        <div class="action-icon">◎</div>
+        <div class="action-icon">
+          ◎
+        </div>
         Account<br>Overview
       </div>
 
       <div class="action">
-        <div class="action-icon">⌁</div>
+        <div class="action-icon">
+          ⌁
+        </div>
         Account<br>Activity
       </div>
 
       <div class="action">
-        <div class="action-icon">⇄</div>
+        <div class="action-icon">
+          ⇄
+        </div>
         Transfer<br>Money
       </div>
 
       <div class="action">
-        <div class="action-icon">▦</div>
+        <div class="action-icon">
+          ▦
+        </div>
         Scan &amp;<br>Pay
       </div>
 
     </section>
 
+
+    <!-- PROMOTIONAL BANNER -->
     <div class="banner">
+
       <div>
-        <strong>Stay safe &amp; switch to<br>contactless payment!</strong>
-        <span>Promotional Banner</span>
+
+        <strong>
+          Stay safe &amp; switch to<br>
+          contactless payment!
+        </strong>
+
+        <span>
+          Demo promotional banner
+        </span>
+
       </div>
+
     </div>
 
+
+    <!-- BANK -->
     <section class="bank-section">
 
       <div class="bank-header">
-        <span>Bank</span>
-        <span>›</span>
+
+        <span>
+          Bank
+        </span>
+
+        <span>
+          ›
+        </span>
+
       </div>
+
 
       <div class="bank-grid">
 
         <div class="bank-item">
-          <div class="bank-icon">₹</div>
+
+          <div class="bank-icon">
+            ₹
+          </div>
+
           Bank
+
         </div>
 
-        <div class="bank-item">
-          <div class="bank-icon">◎</div>
-          Account<br>Overview
-        </div>
 
         <div class="bank-item">
-          <div class="bank-icon">▣</div>
-          Account<br>Activity
+
+          <div class="bank-icon">
+            ◎
+          </div>
+
+          Account<br>
+          Overview
+
         </div>
 
+
         <div class="bank-item">
-          <div class="bank-icon">▤</div>
-          Account<br>Statement
+
+          <div class="bank-icon">
+            ▣
+          </div>
+
+          Account<br>
+          Activity
+
+        </div>
+
+
+        <div class="bank-item">
+
+          <div class="bank-icon">
+            ▤
+          </div>
+
+          Account<br>
+          Statement
+
         </div>
 
       </div>
 
     </section>
 
+
+    <!-- PAY & TRANSFER -->
     <section class="transfer-section">
 
       <div class="bank-header">
-        <span>Pay &amp; Transfer</span>
-        <span>›</span>
+
+        <span>
+          Pay &amp; Transfer
+        </span>
+
+        <span>
+          ›
+        </span>
+
       </div>
+
 
       <div class="bank-grid">
 
         <div class="bank-item">
-          <div class="bank-icon">⇄</div>
+
+          <div class="bank-icon">
+            ⇄
+          </div>
+
           Transfer
+
         </div>
 
+
         <div class="bank-item">
-          <div class="bank-icon">▣</div>
+
+          <div class="bank-icon">
+            ▣
+          </div>
+
           Bill Pay
+
         </div>
 
+
         <div class="bank-item">
-          <div class="bank-icon">BH</div>
+
+          <div class="bank-icon">
+            BH
+          </div>
+
           BHIM
+
         </div>
 
+
         <div class="bank-item">
-          <div class="bank-icon">▦</div>
+
+          <div class="bank-icon">
+            ▦
+          </div>
+
           Scan &amp; Pay
+
         </div>
 
       </div>
 
     </section>
 
+
+    <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
 
       <div class="nav-item">
-        <div class="nav-icon">☆</div>
+
+        <div class="nav-icon">
+          ☆
+        </div>
+
         My Bank
+
       </div>
 
+
       <div class="nav-item">
-        <div class="nav-icon">▣</div>
+
+        <div class="nav-icon">
+          ▣
+        </div>
+
         Apply Now
+
       </div>
 
+
       <div class="nav-item">
-        <div class="nav-icon">▤</div>
+
+        <div class="nav-icon">
+          ▤
+        </div>
+
         Credit Card
+
       </div>
 
+
       <div class="nav-item">
-        <div class="nav-icon">▥</div>
+
+        <div class="nav-icon">
+          ▥
+        </div>
+
         Service Request
+
       </div>
 
+
       <div class="nav-item">
-        <div class="nav-icon">▥</div>
+
+        <div class="nav-icon">
+          ▥
+        </div>
+
         Investments
+
       </div>
 
     </nav>
 
+
+    <!-- =========================
+         PIN POPUP
+         ========================= -->
+
+    <div id="pinModal" class="pin-modal">
+
+      <div class="pin-box">
+
+        <!-- CLOSE -->
+        <button
+          class="close-btn"
+          onclick="closePin()">
+          ×
+        </button>
+
+
+        <!-- LOCK -->
+        <div class="lock-icon">
+          🔒
+        </div>
+
+
+        <h3>
+          Enter PIN
+        </h3>
+
+
+        <p>
+          Enter your 6-digit PIN to view balance
+        </p>
+
+
+        <!-- PIN -->
+        <input
+          id="pinInput"
+          type="password"
+          inputmode="numeric"
+          maxlength="6"
+          placeholder="••••••"
+          autocomplete="off"
+        >
+
+
+        <!-- ERROR -->
+        <div
+          id="pinError"
+          class="pin-error">
+        </div>
+
+
+        <!-- CONTINUE -->
+        <button
+          class="verify-btn"
+          onclick="verifyPin()">
+          Continue
+        </button>
+
+      </div>
+
+    </div>
+
   </div>
 
+
+  <!-- =========================
+       JAVASCRIPT
+       ========================= -->
+
   <script>
-    function showBalance() {
-      const balance = document.getElementById("balance");
-      const button = document.querySelector(".balance-btn");
 
-      balance.classList.toggle("show");
+    /*
+      DEMO PIN
 
-      if (balance.classList.contains("show")) {
-        button.textContent = "Hide Balance";
-      } else {
-        button.textContent = "View Balance";
-      }
+      The correct PIN is:
+      042002
+    */
+
+    const CORRECT_PIN = "042002";
+
+
+    /*
+      OPEN PIN WINDOW
+    */
+
+    function openPin() {
+
+      const modal =
+        document.getElementById("pinModal");
+
+      const input =
+        document.getElementById("pinInput");
+
+      const error =
+        document.getElementById("pinError");
+
+
+      modal.style.display = "flex";
+
+      input.value = "";
+
+      error.textContent = "";
+
+
+      setTimeout(function () {
+
+        input.focus();
+
+      }, 100);
+
     }
+
+
+    /*
+      CLOSE PIN WINDOW
+    */
+
+    function closePin() {
+
+      document.getElementById(
+        "pinModal"
+      ).style.display = "none";
+
+    }
+
+
+    /*
+      VERIFY PIN
+    */
+
+    function verifyPin() {
+
+      const input =
+        document.getElementById("pinInput");
+
+      const error =
+        document.getElementById("pinError");
+
+
+      /*
+        Check PIN
+      */
+
+      if (input.value === CORRECT_PIN) {
+
+        /*
+          Correct PIN
+        */
+
+        closePin();
+
+
+        /*
+          Show balance
+        */
+
+        document
+          .getElementById("balance")
+          .classList.add("show");
+
+
+        /*
+          Change button text
+        */
+
+        document.querySelector(
+          ".balance-btn"
+        ).textContent = "Hide Balance";
+
+      }
+
+      else {
+
+        /*
+          Incorrect PIN
+        */
+
+        error.textContent =
+          "Incorrect PIN. Please try again.";
+
+        input.value = "";
+
+        input.focus();
+
+      }
+
+    }
+
+
+    /*
+      ENTER KEY SUPPORT
+    */
+
+    document
+      .getElementById("pinInput")
+      .addEventListener(
+        "keydown",
+        function(event) {
+
+          if (event.key === "Enter") {
+
+            verifyPin();
+
+          }
+
+        }
+      );
+
+
+    /*
+      HIDE BALANCE AGAIN
+      WHEN BUTTON IS CLICKED
+    */
+
+    document
+      .querySelector(".balance-btn")
+      .addEventListener(
+        "click",
+        function() {
+
+          const balance =
+            document.getElementById("balance");
+
+
+          /*
+            If balance is already visible,
+            clicking the button hides it.
+          */
+
+          if (
+            balance.classList.contains("show")
+          ) {
+
+            balance.classList.remove("show");
+
+            this.textContent =
+              "View Balance";
+
+          }
+
+        }
+      );
+
   </script>
 
 </body>
